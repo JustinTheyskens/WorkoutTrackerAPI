@@ -1,0 +1,1 @@
+Instead of using the typical MVC package-by-layer, I'm opting to use the package-by-feature style.
