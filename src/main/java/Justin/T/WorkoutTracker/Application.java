@@ -28,8 +28,8 @@ public class Application
 	{
 		return args ->
 		{
-			Run run1 = new Run(1, "Fist Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.Outdoor);
-			log.info("Run: " + run1);
+//			Run run1 = new Run(1, "Fist Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.Outdoor);
+//			log.info("Run: " + run1);
 		};
 	}
 }

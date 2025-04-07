@@ -60,11 +60,11 @@ public class RunRepo
     @PostConstruct
     private void init()
     {
-        Run run1 = new Run(1, "Fist Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.Outdoor);
-        Run run2 = new Run(2, "Second Run", LocalDateTime.now(), LocalDateTime.now().plus(2, ChronoUnit.HOURS), 10, Location.Outdoor);
-        Run run3 = new Run(3, "Third Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 7, Location.Indoor);
-        runs.add(run1);
-        runs.add(run2);
-        runs.add(run3);
+//        Run run1 = new Run(1, "Fist Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.Outdoor);
+//        Run run2 = new Run(2, "Second Run", LocalDateTime.now(), LocalDateTime.now().plus(2, ChronoUnit.HOURS), 10, Location.Outdoor);
+//        Run run3 = new Run(3, "Third Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 7, Location.Indoor);
+//        runs.add(run1);
+//        runs.add(run2);
+//        runs.add(run3);
     }
 }
