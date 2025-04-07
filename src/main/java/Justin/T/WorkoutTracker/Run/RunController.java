@@ -1,6 +1,7 @@
 package Justin.T.WorkoutTracker.Run;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +13,12 @@ public class RunController
 {
 
     private final RunRepo Repo;
+    private final JdbcClient jdbcClient;
 
-    public RunController(RunRepo repo)
+    public RunController(RunRepo repo, JdbcClient jdbcClient)
     {
         Repo = repo;
+        this.jdbcClient = jdbcClient;
     }
 
     @GetMapping("/home")

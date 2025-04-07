@@ -27,7 +27,10 @@ public class RunRepo
 
     List<Run> findAll()
     {
-        return runs;
+        return jdbcClient
+                .sql("select * from run")
+                .query(Run.class)
+                .list();
     }
 
     Optional<Run> findById(int id)
