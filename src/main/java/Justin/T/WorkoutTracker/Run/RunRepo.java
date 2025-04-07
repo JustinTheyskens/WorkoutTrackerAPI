@@ -70,6 +70,15 @@ public class RunRepo
         Assert.state(updated == 1, "failed to delete run " + id);
     }
 
+    public List<Run> findByLocation(String location)
+    {
+        return jdbcClient
+                .sql("SELECT * FROM run WHERE location = :location")
+                .param("location", location)
+                .query(Run.class)
+                .list();
+    }
+
     @PostConstruct
     private void init()
     {
