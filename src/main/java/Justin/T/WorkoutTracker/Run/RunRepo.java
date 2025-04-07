@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -28,36 +29,45 @@ public class RunRepo
     List<Run> findAll()
     {
         return jdbcClient
-                .sql("select * from run")
+                .sql("select * from Run")
                 .query(Run.class)
                 .list();
     }
 
     Optional<Run> findById(int id)
     {
-        return runs.stream()
-                .filter(r -> r.id() == id)
-                .findFirst();
+        return jdbcClient
+                .sql("SELECT id, name, started, completed, miles, location, FROM Run WHERE id = :id")
+                .param("id", id)
+                .query(Run.class)
+                .optional();
     }
 
     void create(Run run)
     {
-        runs.add(run);
+        var updated = jdbcClient
+                .sql("INSERT INTO Run(id, name, started, completed, miles, location) values(?, ?, ?, ?, ?, ?)")
+                .params(List.of(run.id(), run.name(), run.started(), run.completed(), run.miles(), run.location().toString()))
+                .update();
+
+        Assert.state(updated == 1, "failed to create " + run.name());
     }
 
     void update(Run run, Integer id)
     {
-        Optional<Run> existingRun = findById(id);
-
-        if (existingRun.isPresent())
-        {
-            runs.set(runs.indexOf(existingRun.get()), run);
-        }
+        var updated = jdbcClient
+                .sql("update Run set name = ?, started = ?, completed = ?, miles = ?, location = ?, where id = ?")
+                .params(List.of(run.name(), run.started(), run.completed(), run.miles(), run.location().toString(), id))
+                .update();
     }
 
     void delete(Integer id)
     {
-        runs.removeIf(r -> r.id() == id);
+        var updated = jdbcClient.sql("DELETE FROM Run WHERE id = :id")
+                .param("id", id)
+                .update();
+
+        Assert.state(updated == 1, "failed to delete run " + id);
     }
 
     @PostConstruct
