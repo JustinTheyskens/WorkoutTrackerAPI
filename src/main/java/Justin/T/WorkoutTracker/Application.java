@@ -2,6 +2,7 @@ package Justin.T.WorkoutTracker;
 
 import Justin.T.WorkoutTracker.Run.Location;
 import Justin.T.WorkoutTracker.Run.Run;
+import Justin.T.WorkoutTracker.Run.RunRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -23,13 +24,13 @@ public class Application
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner()
-	{
-		return args ->
-		{
+//	@Bean
+//	CommandLineRunner runner(RunRepo repo)
+//	{
+//		return args ->
+//		{
 //			Run run1 = new Run(1, "Fist Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.Outdoor);
-//			log.info("Run: " + run1);
-		};
-	}
+//			repo.create(run1);
+//		};
+//	}
 }

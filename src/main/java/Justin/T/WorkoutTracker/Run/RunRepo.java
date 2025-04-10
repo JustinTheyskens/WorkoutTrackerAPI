@@ -26,7 +26,7 @@ public class RunRepo
         this.jdbcClient = jdbcClient;
     }
 
-    List<Run> findAll()
+    public List<Run> findAll()
     {
         return jdbcClient
                 .sql("select * from Run")
@@ -34,7 +34,7 @@ public class RunRepo
                 .list();
     }
 
-    Optional<Run> findById(int id)
+    public Optional<Run> findById(int id)
     {
         return jdbcClient
                 .sql("SELECT id, name, started, completed, miles, location, FROM Run WHERE id = :id")
@@ -43,7 +43,7 @@ public class RunRepo
                 .optional();
     }
 
-    void create(Run run)
+    public void create(Run run)
     {
         var updated = jdbcClient
                 .sql("INSERT INTO Run(id, name, started, completed, miles, location) values(?, ?, ?, ?, ?, ?)")
@@ -53,7 +53,7 @@ public class RunRepo
         Assert.state(updated == 1, "failed to create " + run.name());
     }
 
-    void update(Run run, Integer id)
+    public void update(Run run, Integer id)
     {
         var updated = jdbcClient
                 .sql("update Run set name = ?, started = ?, completed = ?, miles = ?, location = ?, where id = ?")
@@ -61,7 +61,7 @@ public class RunRepo
                 .update();
     }
 
-    void delete(Integer id)
+    public void delete(Integer id)
     {
         var updated = jdbcClient.sql("DELETE FROM Run WHERE id = :id")
                 .param("id", id)
