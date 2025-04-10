@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS Run(
     started timestamp NOT NULL,
     completed timestamp NOT NULL,
     location VARCHAR(250) NOT NULL,
+    version INT NOT NULL,
     PRIMARY KEY (id)
 );
 

@@ -49,19 +49,20 @@ public class RunController
     @PostMapping("")
     void Create(@Valid @RequestBody Run run)
     {
-        Repo.create(run);
+        Repo.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@Valid @RequestBody Run run, @PathVariable Integer id)
     {
-        Repo.update(run, id);
+        Repo.save(run);
     }
 
     @DeleteMapping
     void delete(@PathVariable Integer id)
     {
-        Repo.delete(id);
+        Run run = Repo.findById(id).get();
+        Repo.delete(run);
     }
 }
