@@ -65,4 +65,10 @@ public class RunController
         Run run = Repo.findById(id).get();
         Repo.delete(run);
     }
+
+    @GetMapping("/location/{location}")
+    List<Run> findAllByLocation(String location)
+    {
+        return Repo.findAllByLocation(location);
+    }
 }

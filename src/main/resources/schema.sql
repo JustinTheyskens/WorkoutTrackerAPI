@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Run(
     started timestamp NOT NULL,
     completed timestamp NOT NULL,
     location VARCHAR(250) NOT NULL,
-    version INT NOT NULL,
+    version INT,
     PRIMARY KEY (id)
 );
 
@@ -14,5 +14,6 @@ CREATE TABLE IF NOT EXISTS Workout(
     weight Integer,
     sets Integer NOT NULL,
     reps Integer NOT NULL,
+    version INT
     PRIMARY KEY (id)
     );

@@ -31,6 +31,16 @@ public class JdbcClientRunRepo
                 .list();
     }
 
+    public int count()
+    {
+        return findAll().size();
+    }
+
+    public void saveAll(List<Run> runs)
+    {
+        // add logic here
+    }
+
     public Optional<Run> findById(int id)
     {
         return jdbcClient
