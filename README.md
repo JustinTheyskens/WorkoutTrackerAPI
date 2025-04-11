@@ -38,5 +38,5 @@ Trello
 - Spring MVC (Web API Framework)
 - JUnit (Backend Testing)
 - Azure (for application hosting)
-- Github Action or Azure Pipeline for CICD Pipeline
+- Github Actions for CICD Pipeline
 - Docker for containerization
