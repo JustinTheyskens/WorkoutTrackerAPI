@@ -2,6 +2,7 @@ package Justin.T.WorkoutTracker.Workout;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,16 +13,18 @@ import java.util.Optional;
 public class WorkoutController
 {
     private final WorkoutRepo Repo;
+    private final JdbcClient jdbcClient;
 
-    public WorkoutController(WorkoutRepo repo)
+    public WorkoutController(WorkoutRepo repo, JdbcClient client)
     {
         Repo = repo;
+        jdbcClient = client;
     }
 
     @GetMapping("/home")
     String home()
     {
-        return "Welcome, to your workout!";
+        return "Welcome to your workout!";
     }
 
     @GetMapping("/workouts")
@@ -46,19 +49,26 @@ public class WorkoutController
     @PostMapping("")
     void Create(@Valid @RequestBody Workout workout)
     {
-        Repo.create(workout);
+        Repo.save(workout);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@Valid @RequestBody Workout workout, @PathVariable Integer id)
     {
-        Repo.update(workout, id);
+        Repo.save(workout);
     }
 
     @DeleteMapping
     void delete(@PathVariable Integer id)
     {
-        Repo.delete(id);
+        var workout = Repo.findById(id).get();
+        Repo.delete(workout);
+    }
+
+    @GetMapping("/weight/{weight}")
+    List<Workout> findAllByWeight(Integer weight)
+    {
+        return Repo.findAllByWeight(weight);
     }
 }
