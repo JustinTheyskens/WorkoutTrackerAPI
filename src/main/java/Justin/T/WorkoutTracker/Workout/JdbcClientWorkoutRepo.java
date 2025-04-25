@@ -79,6 +79,15 @@ public class JdbcClientWorkoutRepo
         Assert.state(updated == 1, "failed to delete workout " + id);
     }
 
+    public List<Workout> findAllByWeight(Integer weight)
+    {
+        return jdbcClient
+                .sql("SELECT * FROM workout WHERE weight = :weight")
+                .param("weight", weight)
+                .query(Workout.class)
+                .list();
+    }
+
     @PostConstruct
     private void init()
     {
