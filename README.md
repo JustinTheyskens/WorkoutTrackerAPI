@@ -16,13 +16,9 @@ An API that allows users to track their workouts and runs by logging their progr
 - Users can sort workouts by name or weight.
 - Users can sort runs by name or location.
 
-
 ## Technology
 - Java
 - Spring Boot (ORM)
 - PostgreSQL
 - Spring MVC (Web API Framework)
 - JUnit (Backend Testing)
-- Azure (for application hosting)
-- Github Actions for CICD Pipeline
-- Docker for containerization
